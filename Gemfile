@@ -27,6 +27,7 @@ gem 'geocoder'
 gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'figaro'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
