@@ -32,11 +32,21 @@ body {
 
 .newlocation {
   padding: 20% 0;
+  width: 40%;
+  height: 40%;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .newlocation {
+    padding: 20% 0;
+    width: 80%;
+    height: 60%;
+    margin: 0 auto;
+  }
 }
 
 .newlocation, #showlocations {
-  margin-right: 30%;
-  margin-left: 30%;
   background: rgba(0,0,0,0.5);
   border-radius: 4px;
   padding: 10px;
@@ -46,6 +56,21 @@ body {
   -ms-box-shadow: 0px 8px 6px -6px rgba(0,0,0,0.6);
   -moz-box-shadow: 0px 8px 6px -6px rgba(0,0,0,0.6);
   -webkit-box-shadow: 0px 8px 6px -6px rgba(0,0,0,0.6);
+}
+
+.map-responsive {
+  overflow:hidden;
+  padding-bottom:100%;
+  position:relative;
+  height:0;
+}
+
+#map {
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
 }
 
 #content {
