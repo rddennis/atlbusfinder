@@ -1,12 +1,12 @@
-<%= simple_form_for(@location) do |f| %>
-  <%= f.error_notification %>
+  <%= simple_form_for(@location) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :street_address, label: 'Address or Approximate Location' %>
-    <%= f.input :city %>
-  </div>
+    <div class="form-inputs">
+      <%= f.input :street_address, label: 'Address or Approximate Location' %>
+      <%= f.input :city %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.submit 'Find Your Bus!', class: "btn btn-info btn-large" %>
-  </div>
-<% end %>
+    <div class="form-actions" id="submit_button">
+      <%= f.submit 'Find My Bus', class: "btn btn-info btn-large" %>
+    </div>
+  <% end %>

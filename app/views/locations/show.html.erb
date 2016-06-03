@@ -1,26 +1,28 @@
-<h1>Choose Your Bus</h1>
+<div class="container-fluid" id="showlocations">
 
-<h3 class="text-muted">Your Current Location</h3>
-<p class="text-muted">
-  <%= @location.full_street_address %> <%= link_to fa_icon('pencil', text: 'Edit'), edit_location_path(@location) %>
-  </p>
+<div class="show-info">
+  <h3>Your Current Location</h3>
+  <p><%= @location.full_street_address %> <%= link_to fa_icon('pencil', text: 'Edit'), edit_location_path(@location) %></p>
+</div>
 
-    <div id="map" style="height:500px;width:500px;margin:0;padding:0;"></div>
-     <script>
+<div class="row">
+  <div class="col-sm-6">
+    <div id="map" style="height:70vh;width:70vh;margin:0;padding:0;"></div>
+   <script>
       var map, mapOptions;
-     function initMap() {
+      function initMap() {
        var userLatLng = {
          lat: <%= @location.latitude %>,
          lng: <%= @location.longitude %>
-       };
+        };
 
        var nearbyBuses = <%= raw @buses.to_json %>;
        var busIcon = "<%= image_path 'bus.png' %>";
        var userIcon = "<%= image_path 'user.png' %>";
 
-       mapOptions = {
-         center: userLatLng,
-         zoom: 14
+      mapOptions = {
+        center: userLatLng,
+        zoom: 14
        };
 
        map = new google.maps.Map(document.getElementById('map'), mapOptions);
@@ -33,7 +35,7 @@
          title: "Your Location"
        });
 
-       var userInfo = '<div id="content">' + '<h3><%= @location.full_street_address %>' + '</h3>' + '</div>';
+       var userInfo = '<div id="content">' + '<h3>3000 Peachtree Street, Atlanta, GA' + '</h3>' + '</div>';
 
        var userWindow = new google.maps.InfoWindow({
         content: userInfo
@@ -66,25 +68,30 @@
       });
 }
     </script>
-
-  <h3>The closest buses are...</h3>
-
-  <% @buses.each do |bus| %>
-  <p>
-    <strong>Route:</strong> <%= bus["ROUTE"] %> <%= bus["DIRECTION"] %> <br />
-    <strong>Bus Number:</strong> <%= bus["VEHICLE"] %><br />
-    <strong>Next Stop:</strong> <%= bus["TIMEPOINT"] %><br />
-  </p>
-
-  <% end %>
-
-  <% if @buses.empty? %>
-  <p>
-    No buses nearby! Try again! <%= link_to 'Edit your location', edit_location_path %>
-  </p>
-
-  <% end %>
+        </div> <!-- Closes left column -->
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['google_maps_api_key'] %>&callback=initMap"
-    async defer></script>
+
+    <div class="col-sm-6" id="closestlocations">
+      <% @buses.each do |bus| %>
+      <p>
+        <strong>Route:</strong> <%= bus["ROUTE"] %> <%= bus["DIRECTION"] %> <br />
+        <strong>Bus Number:</strong> <%= bus["VEHICLE"] %><br />
+        <strong>Next Stop:</strong> <%= bus["TIMEPOINT"] %><br />
+      </p>
+
+      <% end %>
+
+      <% if @buses.empty? %>
+      <p>
+        No buses nearby! Try again! <%= link_to 'Edit your location', edit_location_path %>
+      </p>
+
+      <% end %>
+    </div> <!-- Closes right column -->
+
+  </div> <!-- Closes row -->
+</div> <!-- Closes container -->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['google_maps_api_key'] %>&callback=initMap" async defer></script>
+
