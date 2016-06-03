@@ -7,10 +7,11 @@
 
 <div class="row">
   <div class="col-sm-6">
-    <div id="map" style="height:70vh;width:70vh;margin:0;padding:0;"></div>
+    <div id="map" style="height:80vh;width:80vh;margin:0 auto;padding:0;position:relative;overflow:hidden;"></div>
    <script>
       var map, mapOptions;
-      function initMap() {
+
+      function initMap(){
        var userLatLng = {
          lat: <%= @location.latitude %>,
          lng: <%= @location.longitude %>
@@ -20,10 +21,10 @@
        var busIcon = "<%= image_path 'bus.png' %>";
        var userIcon = "<%= image_path 'user.png' %>";
 
-      mapOptions = {
-        center: userLatLng,
-        zoom: 14
-       };
+        mapOptions = {
+          center: userLatLng,
+          zoom: 14
+         };
 
        map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
@@ -35,7 +36,7 @@
          title: "Your Location"
        });
 
-       var userInfo = '<div id="content">' + '<h3>3000 Peachtree Street, Atlanta, GA' + '</h3>' + '</div>';
+       var userInfo = '<div id="content">' + '<h3>' + '<%= @location.full_street_address %>' + '</h3>' + '</div>';
 
        var userWindow = new google.maps.InfoWindow({
         content: userInfo
