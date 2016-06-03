@@ -19,7 +19,7 @@
 @import "font-awesome";
 
 body {
-  background: url('../assets/atlanta-bg.jpg') no-repeat center center fixed;
+  background: url(image-path('atlanta-bg.jpg')) no-repeat center center fixed;
   background-size: cover;
   color: black;
   font-size: 24px;
